@@ -8,7 +8,6 @@ type Props = {
 
 export const InfoArea = ({ currentMonth, onMonthChange }: Props) => {
   const handlePrevMont = () => {
-    console.log("aquiii");
     let [year, month] = currentMonth.split("-");
     let currentDate = new Date(parseInt(year), parseInt(month) - 1, 1);
     currentDate.setMonth(currentDate.getMonth() - 1);
