@@ -6,8 +6,13 @@ import { items } from "./data/items";
 import { useEffect, useState } from "react";
 import { getCurrentMonth, filterListByMonth } from "./helpers/DateFilter";
 import { TableArea } from "./components/TableArea";
+import { InfoArea } from "./components/InfoArea";
 
 const App = () => {
+  const onMonthChange = (newMonth: string) => {
+    setCurrentMonth(newMonth);
+  };
+
   const [list, setList] = useState(items);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
   const [filteredList, setFilteredList] = useState<Item[]>([]);
@@ -22,6 +27,7 @@ const App = () => {
         <C.HeaderText>Sistema financeiro</C.HeaderText>
       </C.Header>
       <C.Body>
+        <InfoArea onMonthChange={onMonthChange} currentMonth={currentMonth} />
         <TableArea list={filteredList} />
       </C.Body>
     </C.Container>
