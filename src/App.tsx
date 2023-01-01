@@ -1,5 +1,4 @@
 import * as C from "./App.styles";
-import { Category } from "./types/Category";
 import { Item } from "./types/Item";
 import { Categories } from "./data/Categories";
 import { items } from "./data/items";
@@ -7,10 +6,17 @@ import { useEffect, useState } from "react";
 import { getCurrentMonth, filterListByMonth } from "./helpers/DateFilter";
 import { TableArea } from "./components/TableArea";
 import { InfoArea } from "./components/InfoArea";
+import { InputArea } from "./components/InputArea";
 
 const App = () => {
   const onMonthChange = (newMonth: string) => {
     setCurrentMonth(newMonth);
+  };
+
+  const handleAddItem = (item: Item) => {
+    let newList = [...list];
+    newList.push(item);
+    setList(newList);
   };
 
   const [list, setList] = useState(items);
@@ -51,6 +57,7 @@ const App = () => {
           income={income}
           expense={expense}
         />
+        <InputArea onAdd={handleAddItem} />
         <TableArea list={filteredList} />
       </C.Body>
     </C.Container>
